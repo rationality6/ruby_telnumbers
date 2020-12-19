@@ -18,6 +18,7 @@ class TelnosController < ApplicationController
 
     @telno = Telno.new
     @telnos = Telno.order(name: :asc, owner: :asc)
+    # 테스트용 주석
 
   end
 
