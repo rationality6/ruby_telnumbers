@@ -1,29 +1,32 @@
 <h3 align="center">사용자 전화번호 조회 및 등록</h3>
 <table>
   <thead>
-    <tr>
-      <th>No</th>
-      <th>이름</th>
-      <th>전화번호</th>
-      <th>전화소유</th>
-    </tr>
-  </thead>
-  <% lno = 1 %>
-  <% @results.each do |result| %>
   <tr>
-    <td>
-      <%= lno %></td>
-    <td><%= result.name %></td>
-    <td><%= result.owner %></td>
-    <td><%= result.telno %></td>
-    <td><%= link_to '조회', telnos_path %></td>
-    <td><%= link_to '수정', telnos_path %></td>
-    <td><%= link_to '삭제', telnos_path %></td>
-    <% 
-  lno = lno + 1
-  end
-%>
+    <th>No</th>
+    <th>이름</th>
+    <th>전화번호</th>
+    <th>전화소유</th>
   </tr>
+  </thead>
+  <% if @results %>
+    <% lno = 1 %>
+    <% @results.each do |result| %>
+      <tr>
+        <td>
+          <%= lno %>
+        </td>
+        <td><%= result.name %></td>
+        <td><%= result.owner %></td>
+        <td><%= result.telno %></td>
+        <td><%= link_to '조회', telnos_path %></td>
+        <td><%= link_to '수정', edit_telno_path(result.id, search: params[:search]) %></td>
+        <td><%= link_to '삭제', telno_path(result, search: params[:search]), method: :delete %></td>
+
+      </tr>
+      <%#= lno = lno + 1 %>
+    <% end %>
+  <% end %>
+
 </table>
 
 <hr>

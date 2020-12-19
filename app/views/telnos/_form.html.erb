@@ -1,46 +1,48 @@
 <%= form_with(model: telno, local: true) do |form| %>
-<% if telno.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(telno.errors.count, "error") %> prohibited this telno from being saved:</h2>
+  <% if telno.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(telno.errors.count, "error") %> prohibited this telno from being saved:</h2>
 
-  <ul>
-    <% telno.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+      <ul>
+        <% telno.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<table>
-  <tr>
-    <td><%= form.label :이름 %></td>
-    <td><%= form.select :name, User.order(name: :asc).pluck(:name), {prompt:'이름'} %></td>
-    <td><%= form.label :전화번호_소유자 %></td>
-    <td><%= form.select :owner, ['본인', '남편', '아내', '부', '모', '조부', '조모', '아들', '딸', '형제', '자매', '이모', '삼촌', '이웃', '기타'],{prompt:'관계'} %></td>
-    <td><%= form.label :전화번호 %></td>
-    <td><%= form.text_field :telno %></td>
-    <td><%= form.submit %></td>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <td><%= form.label :이름 %></td>
 
-<div class="field">
-  <%#= form.label :이름 %>
-  <%#= form.text_field :name %>
-  <%#= form.select :name, User.order(name: :asc).pluck(:name), {prompt:'이름'} %>
-</div>
+      <td><%= form.select :name, user_list(), :selected => params[:search] || "" %></td>
 
-<div class="field">
-  <%#= form.label :owner %>
-  <%#= form.text_field :owner %>
-  <%#= form.select :owner, ['본인', '부', '모', '조부', '조모', '이모', '삼촌', '기타'],{prompt:'관계'} %>
-</div>
+      <td><%= form.label :전화번호_소유자 %></td>
+      <td><%= form.select :owner, ['본인', '남편', '아내', '부', '모', '조부', '조모', '아들', '딸', '형제', '자매', '이모', '삼촌', '이웃', '기타'], { prompt: '관계' } %></td>
+      <td><%= form.label :전화번호 %></td>
+      <td><%= form.text_field :telno %></td>
+      <td><%= form.submit %></td>
+    </tr>
+  </table>
 
-<div class="field">
-  <%#= form.label :전화번호 %>
-  <%#= form.text_field :telno %>
-</div>
+  <div class="field">
+    <%#= form.label :이름 %>
+    <%#= form.text_field :name %>
+    <%#= form.select :name, User.order(name: :asc).pluck(:name), {prompt:'이름'} %>
+  </div>
 
-<div class="actions">
-  <%#= form.submit %>
-</div>
+  <div class="field">
+    <%#= form.label :owner %>
+    <%#= form.text_field :owner %>
+    <%#= form.select :owner, ['본인', '부', '모', '조부', '조모', '이모', '삼촌', '기타'],{prompt:'관계'} %>
+  </div>
+
+  <div class="field">
+    <%#= form.label :전화번호 %>
+    <%#= form.text_field :telno %>
+  </div>
+
+  <div class="actions">
+    <%#= form.submit %>
+  </div>
 <% end %>
