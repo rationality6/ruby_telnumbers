@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Telnos</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/tailwind.css" rel="stylesheet">
+</head>
+
+<body>
+  <table class="table-auto">
+    <tr>
+      <td>[메뉴]</td>
+      <td><a href="http://localhost:3000/users">사용자</a></td>
+      <td>|</td>
+      <td><a href="http://localhost:3000/telnos">전화번호</a></td>
+
+    </tr>
+
+  </table>
+  <hr>
+  <%= yield %>
+  <hr>
+  <p align="right">센터시스</p>
+</body>
+
+</html>

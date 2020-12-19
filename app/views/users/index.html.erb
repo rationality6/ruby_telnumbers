@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1 align="center">사용자 등록 관리</h1>
+<%= render 'form', user: @user %>
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th colspan="3">RUD</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= link_to '조회', user %></td>
+      <td><%= link_to '수정', edit_user_path(user) %></td>
+      <td><%= link_to '삭제', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to '전화번호 등록', 'http://localhost:3000/search?' + {search: user.name}.to_param, method: :get %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

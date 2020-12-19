@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1 align="center">전화번호</h1>
+<hr>
+<%= render 'form', telno: @telno %>
+
+
+<hr>
+<%#= form.select :name, User.order(name: :asc).pluck(:name), {prompt:'이름'} %>
+<%= form_tag(search_telno_path, :method => "get") do %>
+<%= search_field_tag :search, params[:search], placeholder: "Search" %>
+<%= button_tag "조회" %>
+<%#= button_tag "조회", :name => nil %>
+<%#= button_tag "조회", :class => 'btn btn-info glyphicon glyphicon-search', :name => nil %>
+<% end %>
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>이름</th>
+      <th>전화소유</th>
+      <th>전화번호</th>
+
+      <th colspan="3">RUD</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% lno = 1 %>
+    <% @telnos.each do |telno| %>
+    <tr>
+      <td><%= lno %></td>
+      <td><%= telno.name %></td>
+      <td><%= telno.owner %></td>
+      <td><%= telno.telno %></td>
+
+      <td><%= link_to '조회', telno %></td>
+      <td><%= link_to '수정', edit_telno_path(telno) %></td>
+      <td><%= link_to '삭제', telno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% 
+      lno = lno + 1
+      end 
+    %>
+  </tbody>
+</table>
+<hr>
+<p style="color:red">[개발] Search는 한글로 조회할 이름을 적어주세요. 하거나 위에 이름 처럼 고를 수 있으면 더욱 좋을 듯 함</p>
